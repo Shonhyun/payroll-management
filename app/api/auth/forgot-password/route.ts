@@ -62,8 +62,8 @@ export async function POST(request: NextRequest) {
       ? `https://${process.env.NEXT_PUBLIC_VERCEL_URL}` 
       : 'http://localhost:3000'
     
-    // Redirect directly to reset-password - the client will handle the code
-    const redirectTo = `${siteUrl}/reset-password`
+    // Redirect to auth/callback first - it will handle errors and redirect to reset-password
+    const redirectTo = `${siteUrl}/auth/callback`
 
     // Use resetPasswordForEmail - Supabase will send email with code
     // Note: If PKCE is enabled in Supabase, we'll handle it client-side
@@ -107,4 +107,3 @@ export async function POST(request: NextRequest) {
     })
   }
 }
-
